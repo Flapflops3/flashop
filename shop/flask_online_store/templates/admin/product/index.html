@@ -1,0 +1,41 @@
+{% extends "admin/base.html" %}
+
+{% block container %}
+<h1>product</h1>
+{% include 'common/flash.html' %}
+<div class="row">
+  <div class="col-md-6">
+    <form class="form-inline">
+      <input class="form-control" placeholder="search value"/>
+      <button class="btn" type="submit">search</button>
+    </form>
+  </div>
+  <div class="col-md-6">
+    <a href="{{ url_for('admin_product.new') }}" class="btn btn-lg btn-success">add product</a>
+  </div>
+</div>
+<table class="table">
+  <thead>
+    <th>Name</th>
+    <th>Price</th>
+    <th>number</th>
+    <th>tips</th>
+    <th></th>
+  </thead>
+  <tbody>
+    {% for product in products %}
+    <tr>
+      <td>{{ product.name }}</td>
+      <td>{{ product.price }}</td>
+      <td>{{ product.number }}</td>
+      <td>{{ product.tips }}</td>
+      <td>
+        <a href="{{ url_for('admin_product.edit', id=product.id) }}" class="btn btn-sm btn-primary">edit</a>
+        <a href="{{ url_for('admin_product.image', id=product.id) }}" class="btn btn-sm btn-default">images</a>
+      </td>
+    </tr>
+    {% endfor %}
+  <tbody>
+  </tbody>
+</table>
+{% endblock %}
